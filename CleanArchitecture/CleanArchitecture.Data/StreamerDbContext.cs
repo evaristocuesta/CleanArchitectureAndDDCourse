@@ -13,6 +13,6 @@ namespace CleanArchitecture.Data
         }
 
         public DbSet<Streamer>? Streamers { get; set; }
-        public DbSet<Video>? Videos { get; set; }
+        public DbSet<Movie>? Movies { get; set; }
     }
 }
