@@ -1,12 +1,12 @@
-﻿namespace CleanArchitecture.Domain
+﻿using CleanArchitecture.Domain.Common;
+
+namespace CleanArchitecture.Domain
 {
-    public class Movie
+    public class Movie : BaseDomainModel
     {
-        public int Id { get; set; }
         public string? Title { get; set; }
-
         public int StreamerId { get; set; }
-
         public virtual Streamer? Streamer { get; set; }
+        public virtual ICollection<Actor>? Actors { get; set; }
     }
 }
