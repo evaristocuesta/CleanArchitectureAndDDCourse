@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Application.Features.Movies.Queries.GetMoviesByUserName;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -17,6 +18,7 @@ namespace CleanArchitecture.WebAPI.Controllers
         }
 
         [HttpGet("{username}", Name = "GetMoviesByUserName")]
+        [Authorize]
         [ProducesResponseType(typeof(IEnumerable<MovieViewModel>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<MovieViewModel>>> GetMoviesByUserName(string username)
         {
