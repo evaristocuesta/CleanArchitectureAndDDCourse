@@ -7,7 +7,6 @@ using CleanArchitecture.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
 namespace CleanArchitecture.Infrastructure
 {
@@ -24,7 +23,7 @@ namespace CleanArchitecture.Infrastructure
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IStreamerRepository, StreamerRepository>();
-            services.Configure<EmailSettings>(c => configuration.GetSection("EmailSettings"));
+            services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
             services.AddTransient<IEmailService, EmailService>();
 
             return services;
