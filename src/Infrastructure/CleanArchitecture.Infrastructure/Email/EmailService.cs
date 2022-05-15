@@ -25,7 +25,7 @@ namespace CleanArchitecture.Infrastructure.Email
 
             var from = new EmailAddress
             {
-                Email = _emailSettings.FromAdress,
+                Email = _emailSettings.FromAddress,
                 Name = _emailSettings.FromName
             };
 
