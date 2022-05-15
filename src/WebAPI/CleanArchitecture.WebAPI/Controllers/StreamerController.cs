@@ -25,7 +25,7 @@ namespace CleanArchitecture.WebAPI.Controllers
             return await _mediator.Send(command);
         }
 
-        [HttpPut(Name = "CreateStreamer")]
+        [HttpPut(Name = "UpdateStreamer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
@@ -35,7 +35,7 @@ namespace CleanArchitecture.WebAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}", Name = "CreateStreamer")]
+        [HttpDelete("{id}", Name = "DeleteStreamer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
