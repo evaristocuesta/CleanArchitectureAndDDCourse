@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Application.Contracts.Infrastructure;
 using CleanArchitecture.Application.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Net;
@@ -12,9 +13,9 @@ namespace CleanArchitecture.Infrastructure.Email
         private readonly EmailSettings _emailSettings;
         private readonly ILogger<EmailService> _logger;
 
-        public EmailService(EmailSettings emailSettings, ILogger<EmailService> logger)
+        public EmailService(IOptions<EmailSettings> emailSettings, ILogger<EmailService> logger)
         {
-            _emailSettings = emailSettings;
+            _emailSettings = emailSettings.Value;
             _logger = logger;
         }
 
