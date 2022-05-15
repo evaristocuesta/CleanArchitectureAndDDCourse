@@ -7,6 +7,7 @@ using CleanArchitecture.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace CleanArchitecture.Infrastructure
 {
@@ -16,6 +17,8 @@ namespace CleanArchitecture.Infrastructure
         {
             services.AddDbContext<StreamerDbContext>(option =>
                 option.UseSqlServer(configuration.GetConnectionString("ConnectionString"))
+                .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, Microsoft.Extensions.Logging.LogLevel.Information)
+                .EnableSensitiveDataLogging()
             );
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));

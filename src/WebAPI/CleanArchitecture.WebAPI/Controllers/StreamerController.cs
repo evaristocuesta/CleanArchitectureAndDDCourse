@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Application.Features.Streamers.Commands.CreateStreamer;
+﻿using CleanArchitecture.Application.Exceptions;
+using CleanArchitecture.Application.Features.Streamers.Commands.CreateStreamer;
 using CleanArchitecture.Application.Features.Streamers.Commands.DeleteStreamer;
 using CleanArchitecture.Application.Features.Streamers.Commands.UpdateStreamer;
 using MediatR;
@@ -31,7 +32,14 @@ namespace CleanArchitecture.WebAPI.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult> UpdateStreamer([FromBody]UpdateStreamerCommand command)
         {
-            await _mediator.Send(command);
+            try
+            {
+                await _mediator.Send(command);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
             return NoContent();
         }
 
@@ -46,7 +54,15 @@ namespace CleanArchitecture.WebAPI.Controllers
                 Id = id
             };
 
-            await _mediator.Send(command);
+            try
+            {
+                await _mediator.Send(command);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
             return NoContent();
         }
     }

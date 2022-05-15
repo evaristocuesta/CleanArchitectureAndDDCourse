@@ -12,8 +12,7 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.CreateStream
                 .MaximumLength(50).WithMessage("Name lenght must be less than 50");
 
             RuleFor(s => s.Url)
-                .NotEmpty().WithMessage("Url is required")
-                .EmailAddress().WithMessage("Email is not valid");
+                .NotEmpty().WithMessage("Url is required");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Features.Movies.Queries.GetMoviesByUserName;
+using CleanArchitecture.Application.Features.Streamers.Commands.CreateStreamer;
 using CleanArchitecture.Application.Features.Streamers.Commands.UpdateStreamer;
 using CleanArchitecture.Domain;
 
@@ -10,6 +11,7 @@ namespace CleanArchitecture.Application.Mappings
         public MappingProfile()
         {
             CreateMap<Movie, MovieViewModel>();
+            CreateMap<CreateStreamerCommand, Streamer>();
             CreateMap<UpdateStreamerCommand, Streamer>();
         }
     }

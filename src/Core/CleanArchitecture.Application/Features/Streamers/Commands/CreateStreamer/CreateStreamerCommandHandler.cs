@@ -39,7 +39,7 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.CreateStream
         {
             var email = new Email()
             {
-                To = "test@gmail.com",
+                To = "evaristocg@gmail.com",
                 Subject = $"Stremer {streamer.Name} added",
                 Body = $"Stremer {streamer.Name} added"
             };

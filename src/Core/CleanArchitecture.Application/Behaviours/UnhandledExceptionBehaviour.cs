@@ -5,9 +5,9 @@ namespace CleanArchitecture.Application.Behaviours
 {
     public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
-        private ILogger _logger;
+        private ILogger<TRequest> _logger;
 
-        public UnhandledExceptionBehaviour(ILogger logger)
+        public UnhandledExceptionBehaviour(ILogger<TRequest> logger)
         {
             _logger = logger;
         }
