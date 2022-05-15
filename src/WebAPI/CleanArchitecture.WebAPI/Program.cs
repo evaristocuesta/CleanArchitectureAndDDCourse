@@ -1,6 +1,7 @@
 using CleanArchitecture.Application;
 using CleanArchitecture.Infrastructure;
 using CleanArchitecture.Identity;
+using CleanArchitecture.WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthentication();
 

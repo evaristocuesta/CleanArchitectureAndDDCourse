@@ -35,14 +35,7 @@ namespace CleanArchitecture.WebAPI.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult> UpdateStreamer([FromBody]UpdateStreamerCommand command)
         {
-            try
-            {
-                await _mediator.Send(command);
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            await _mediator.Send(command);
             return NoContent();
         }
 
@@ -58,15 +51,7 @@ namespace CleanArchitecture.WebAPI.Controllers
                 Id = id
             };
 
-            try
-            {
-                await _mediator.Send(command);
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-
+            await _mediator.Send(command);
             return NoContent();
         }
     }
