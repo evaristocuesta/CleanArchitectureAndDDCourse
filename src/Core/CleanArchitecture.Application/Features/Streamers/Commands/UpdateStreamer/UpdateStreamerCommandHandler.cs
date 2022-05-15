@@ -35,10 +35,8 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStream
             }
 
             var streamer = _mapper.Map(request, streamerToUpdated, typeof(UpdateStreamerCommand), typeof(Streamer));
-            var streamerAdded = await _streamerRepository.UpdateAsync(streamerToUpdated);
-
-            _logger.LogInformation($"Streamer {streamerAdded.Id} updated successfully");
-
+            await _streamerRepository.UpdateAsync(streamerToUpdated);
+            _logger.LogInformation($"Streamer {streamerToUpdated.Id} updated successfully");
             return Unit.Value;
         }
     }

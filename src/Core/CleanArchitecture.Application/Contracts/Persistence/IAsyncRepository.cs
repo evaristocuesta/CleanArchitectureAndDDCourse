@@ -10,12 +10,12 @@ namespace CleanArchitecture.Application.Contracts.Persistence
         Task<IReadOnlyCollection<T>> GetAllAsync(Expression<Func<T, bool>> predicate);
 
         Task<IReadOnlyCollection<T>> GetAllAsync(Expression<Func<T, bool>>? predicate,
-            Func<IQueryable<T>, IOrderedEnumerable<T>>? orderBy,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
             string? includeString,
             bool disableTracking = true);
 
         Task<IReadOnlyCollection<T>> GetAllAsync(Expression<Func<T, bool>>? predicate,
-            Func<IQueryable<T>, IOrderedEnumerable<T>>? orderBy,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
             List<Expression<Func<T, object>>> includes, 
             bool disableTracking = true);
 
@@ -23,8 +23,8 @@ namespace CleanArchitecture.Application.Contracts.Persistence
 
         Task<T> AddAsync(T entity);
 
-        Task<T> UpdateAsync(T entity);
+        Task UpdateAsync(T entity);
 
-        Task<T> DeleteAsync(T entity);
+        Task DeleteAsync(T entity);
     }
 }
