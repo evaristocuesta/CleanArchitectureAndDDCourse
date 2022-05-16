@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.WebAPI", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Application", "src\Core\CleanArchitecture.Application\CleanArchitecture.Application.csproj", "{A91D3139-0432-4167-9D22-ACDF2F33942F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Identity", "src\CleanArchitecture.Identity\CleanArchitecture.Identity.csproj", "{CEECADC4-6883-412C-A8AD-C80725B79888}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Identity", "src\Infrastructure\CleanArchitecture.Identity\CleanArchitecture.Identity.csproj", "{CEECADC4-6883-412C-A8AD-C80725B79888}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DD00CD9F-3C7B-44E2-93BB-286FD8671E32}"
 EndProject
