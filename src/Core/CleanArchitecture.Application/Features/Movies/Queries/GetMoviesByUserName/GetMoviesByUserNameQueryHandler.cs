@@ -4,21 +4,20 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Features.Movies.Queries.GetMoviesByUserName
 {
-    internal class GetMoviesByUserNameHandler : IRequestHandler<GetMoviesByUserNameQuery, List<MovieViewModel>>
+    internal class GetMoviesByUserNameQueryHandler : IRequestHandler<GetMoviesByUserNameQuery, List<MovieViewModel>>
     {
-        private readonly IMovieRepository _movieRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public GetMoviesByUserNameHandler(IMovieRepository movieRepository, IMapper mapper)
+        public GetMoviesByUserNameQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _movieRepository = movieRepository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         public async Task<List<MovieViewModel>> Handle(GetMoviesByUserNameQuery request, CancellationToken cancellationToken)
         {
-            var movies = await _movieRepository.GetMovieByUserName(request.UserName);
-
+            var movies = await _unitOfWork.MovieRepository.GetMovieByUserName(request.UserName);
             return _mapper.Map<List<MovieViewModel>>(movies);
         }
     }

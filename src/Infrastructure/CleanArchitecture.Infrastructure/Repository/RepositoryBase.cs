@@ -22,10 +22,20 @@ namespace CleanArchitecture.Infrastructure.Repository
             return entity;
         }
 
+        public void AddEntity(T entity)
+        {
+            _context.Set<T>().Add(entity);
+        }
+
         public async Task DeleteAsync(T entity)
         {
             _context.Set<T>().Remove(entity);
             await _context.SaveChangesAsync();
+        }
+
+        public void DeleteEntity(T entity)
+        {
+            _context.Set<T>().Remove(entity);
         }
 
         public async Task<IReadOnlyCollection<T>> GetAllAsync()
@@ -99,8 +109,15 @@ namespace CleanArchitecture.Infrastructure.Repository
 
         public async Task UpdateAsync(T entity)
         {
+            _context.Set<T>().Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+        }
+
+        public void UpdateEntity(T entity)
+        {
+            _context.Set<T>().Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

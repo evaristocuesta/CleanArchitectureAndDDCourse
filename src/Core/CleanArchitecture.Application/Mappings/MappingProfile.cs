@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CleanArchitecture.Application.Features.Directors.Commands.CreateDirector;
 using CleanArchitecture.Application.Features.Movies.Queries.GetMoviesByUserName;
 using CleanArchitecture.Application.Features.Streamers.Commands.CreateStreamer;
 using CleanArchitecture.Application.Features.Streamers.Commands.UpdateStreamer;
@@ -13,6 +14,8 @@ namespace CleanArchitecture.Application.Mappings
             CreateMap<Movie, MovieViewModel>();
             CreateMap<CreateStreamerCommand, Streamer>();
             CreateMap<UpdateStreamerCommand, Streamer>();
+            CreateMap<CreateDirectorCommand, Director>();
+            //CreateMap<UpdateDirectorCommand, Director>();
         }
     }
 }

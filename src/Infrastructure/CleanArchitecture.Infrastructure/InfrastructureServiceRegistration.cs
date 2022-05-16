@@ -20,9 +20,11 @@ namespace CleanArchitecture.Infrastructure
                 .EnableSensitiveDataLogging()
             );
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IStreamerRepository, StreamerRepository>();
+            services.AddScoped<IDirectorRepository, DirectorRepository>();
             services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
             services.AddTransient<IEmailService, EmailService>();
 

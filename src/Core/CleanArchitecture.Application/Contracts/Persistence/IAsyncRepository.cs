@@ -26,5 +26,11 @@ namespace CleanArchitecture.Application.Contracts.Persistence
         Task UpdateAsync(T entity);
 
         Task DeleteAsync(T entity);
+
+        void AddEntity(T entity);
+
+        void UpdateEntity(T entity);
+
+        void DeleteEntity(T entity);
     }
 }

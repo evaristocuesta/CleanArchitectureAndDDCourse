@@ -11,14 +11,14 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStream
 {
     public class UpdateStreamerCommandHandler : IRequestHandler<UpdateStreamerCommand>
     {
-        private readonly IStreamerRepository _streamerRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IEmailService _emailService;
         private readonly ILogger<UpdateStreamerCommandHandler> _logger;
 
-        public UpdateStreamerCommandHandler(IStreamerRepository streamerRepository, IMapper mapper, IEmailService emailService, ILogger<UpdateStreamerCommandHandler> logger)
+        public UpdateStreamerCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IEmailService emailService, ILogger<UpdateStreamerCommandHandler> logger)
         {
-            _streamerRepository = streamerRepository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
             _emailService = emailService;
             _logger = logger;
@@ -26,17 +26,18 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStream
 
         public async Task<Unit> Handle(UpdateStreamerCommand request, CancellationToken cancellationToken)
         {
-            var streamerToUpdated = await _streamerRepository.GetByIdAsync(request.Id);
+            var streamerToUpdate = await _unitOfWork.StreamerRepository.GetByIdAsync(request.Id);
 
-            if (streamerToUpdated == null)
+            if (streamerToUpdate == null)
             {
                 _logger.LogError($"Streamer {request.Id} not found");
                 throw new NotFoundException(nameof(Streamer), request.Id);
             }
 
-            var streamer = _mapper.Map(request, streamerToUpdated, typeof(UpdateStreamerCommand), typeof(Streamer));
-            await _streamerRepository.UpdateAsync(streamerToUpdated);
-            _logger.LogInformation($"Streamer {streamerToUpdated.Id} updated successfully");
+            var streamer = _mapper.Map(request, streamerToUpdate, typeof(UpdateStreamerCommand), typeof(Streamer));
+            _unitOfWork.StreamerRepository.UpdateEntity(streamerToUpdate);
+            await _unitOfWork.Complete();
+            _logger.LogInformation($"Streamer {streamerToUpdate.Id} updated successfully");
             return Unit.Value;
         }
     }
