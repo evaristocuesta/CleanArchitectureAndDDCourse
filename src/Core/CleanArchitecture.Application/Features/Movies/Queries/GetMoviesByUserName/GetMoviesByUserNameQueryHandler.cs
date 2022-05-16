@@ -4,7 +4,7 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Features.Movies.Queries.GetMoviesByUserName
 {
-    internal class GetMoviesByUserNameQueryHandler : IRequestHandler<GetMoviesByUserNameQuery, List<MovieViewModel>>
+    public class GetMoviesByUserNameQueryHandler : IRequestHandler<GetMoviesByUserNameQuery, List<MovieViewModel>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

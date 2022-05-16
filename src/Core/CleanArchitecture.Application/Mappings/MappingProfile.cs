@@ -7,7 +7,7 @@ using CleanArchitecture.Domain;
 
 namespace CleanArchitecture.Application.Mappings
 {
-    internal class MappingProfile : Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {
