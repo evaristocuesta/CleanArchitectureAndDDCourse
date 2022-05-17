@@ -27,7 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Movie\Commands\" />
+    <Folder Include="Features\Movies\Commands\" />
+    <Folder Include="Features\Streamers\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,15 +3,16 @@ using CleanArchitecture.Application.Contracts.Persistence;
 using CleanArchitecture.Application.Features.Movies.Queries.GetMoviesByUserName;
 using CleanArchitecture.Application.Mappings;
 using CleanArchitecture.Application.Tests.Mocks;
+using CleanArchitecture.Infrastructure.Repository;
 using Moq;
 using Shouldly;
 
-namespace CleanArchitecture.Application.Tests.Features.Movie.Queries
+namespace CleanArchitecture.Application.Tests.Features.Movies.Queries
 {
     public class GetMoviesByUserNameQueryHandlerShould
     {
         private readonly IMapper _mapper;
-        private readonly Mock<IUnitOfWork> _unitOfWork;
+        private readonly Mock<UnitOfWork> _unitOfWork;
 
         public GetMoviesByUserNameQueryHandlerShould()
         {
@@ -23,6 +24,7 @@ namespace CleanArchitecture.Application.Tests.Features.Movie.Queries
             });
 
             _mapper = mapperConfig.CreateMapper();
+            MockMovieRepository.AddDataMovieRepository(_unitOfWork.Object.StreamerDbContext);
         }
 
         [Theory]

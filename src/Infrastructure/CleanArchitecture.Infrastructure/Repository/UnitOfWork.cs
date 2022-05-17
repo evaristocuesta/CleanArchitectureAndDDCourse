@@ -19,6 +19,8 @@ namespace CleanArchitecture.Infrastructure.Repository
             _repositories = new Hashtable();
         }
 
+        public StreamerDbContext StreamerDbContext => _context;
+
         public IMovieRepository MovieRepository => _movieRepository ??= new MovieRepository(_context);
 
         public IStreamerRepository StreamerRepository => _streamerRepository ??= new StreamerRepository(_context);
